@@ -1,0 +1,70 @@
+[System]
+Name='ControlBorroso'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=2
+NumRules=8
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='E_d'
+Range=[0 10]
+NumMFs=3
+MF1='PEQUEÑA':'trimf',[0 0 5]
+MF2='MEDIA':'trimf',[0 5 10]
+MF3='GRANDE':'trimf',[5 10 10]
+
+[Input2]
+Name='E_theta'
+Range=[-3.14159265358979 3.14159265358979]
+NumMFs=3
+MF1='NEGATIVO':'trimf',[-3.142 -3.142 0]
+MF2='POSITIVO':'trimf',[0 3.142 3.142]
+MF3='CERO':'trimf',[-0.15 0 0.15]
+
+[Input3]
+Name='E_d_obs'
+Range=[0 10]
+NumMFs=3
+MF1='PEQUEÑO':'trimf',[0 0 0.5]
+MF2='MEDIANO':'trimf',[0.3 3 6]
+MF3='GRANDE':'trimf',[5 10 10]
+
+[Input4]
+Name='E_theta_obs'
+Range=[-3.14159265358979 3.14159265358979]
+NumMFs=3
+MF1='NEG':'trimf',[-3.142 -3.142 0]
+MF2='CERO':'trimf',[-0.3 0 0.3]
+MF3='POS':'trimf',[0 3.142 3.142]
+
+[Output1]
+Name='V'
+Range=[0 1]
+NumMFs=3
+MF1='PEQUEÑO':'trimf',[0 0 0.5]
+MF2='MEDIANO':'trimf',[0 0.5 1]
+MF3='GRANDE':'trimf',[0.5 1 1]
+
+[Output2]
+Name='W'
+Range=[-1 1]
+NumMFs=3
+MF1='NEG':'trimf',[-1 -1 0]
+MF2='CERO':'trimf',[0 0 0]
+MF3='POS':'trimf',[0 1 1]
+
+[Rules]
+0 1 0 0, 0 1 (1) : 1
+0 2 0 0, 0 3 (1) : 1
+1 0 0 0, 1 0 (1) : 1
+2 0 0 0, 2 0 (1) : 1
+3 0 0 0, 3 0 (1) : 1
+0 3 0 -2, 0 2 (1) : 1
+0 0 1 2, 0 1 (1) : 1
+0 3 -1 2, 0 2 (1) : 1
