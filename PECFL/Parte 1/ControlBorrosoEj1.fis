@@ -1,0 +1,69 @@
+[System]
+Name='ControlBorrosoEj1'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=2
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='sonar1'
+Range=[0 5]
+NumMFs=2
+MF1='CERCA':'trimf',[0 0 2.5]
+MF2='LEJOS':'trimf',[1.75 5 5]
+
+[Input2]
+Name='sonar2'
+Range=[0 5]
+NumMFs=2
+MF1='CERCA':'trimf',[0 0 1]
+MF2='LEJOS':'trimf',[0.9 5 5]
+
+[Input3]
+Name='sonar3'
+Range=[0 5]
+NumMFs=2
+MF1='CERCA':'trimf',[0 0 1]
+MF2='LEJOS':'trimf',[0.9 5 5]
+
+[Input4]
+Name='sonar4'
+Range=[0 5]
+NumMFs=2
+MF1='CERCA':'trimf',[0 0 2.5]
+MF2='LEJOS':'trimf',[1.75 5 5]
+
+[Output1]
+Name='V'
+Range=[0 5]
+NumMFs=3
+MF1='LENTO':'trimf',[0 0 1.5]
+MF2='MEDIO':'trimf',[1 2.5 4]
+MF3='RAPIDO':'trimf',[3 5 5]
+
+[Output2]
+Name='W'
+Range=[-3.14159265358979 3.14159265358979]
+NumMFs=5
+MF1='MUY_NEG':'trimf',[-3.142 -3.142 -1.571]
+MF2='CERO':'trimf',[-0.1 0 0.1]
+MF3='MUY_POS':'trimf',[1.571 3.142 3.142]
+MF4='NEG':'trimf',[-3.142 -1.571 0]
+MF5='POS':'trimf',[0 1.571 3.14159265358979]
+
+[Rules]
+1 0 2 0, 0 4 (1) : 1
+0 2 0 1, 0 5 (1) : 1
+0 1 -1 0, 0 1 (1) : 1
+0 -1 1 0, 0 3 (1) : 1
+2 2 2 2, 0 2 (1) : 1
+0 2 2 0, 3 0 (1) : 1
+0 2 -2 0, 2 0 (1) : 1
+0 -2 2 0, 2 0 (1) : 1
+0 1 1 0, 1 0 (1) : 1
